@@ -1,0 +1,86 @@
+.about {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-color);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  border-color: rgba(255, 107, 53, 0.4);
+}
+
+.highlight-card h3 {
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem; /* Aumentei um pouco para separar do primeiro item */
+}
+
+/* --- NOVOS ESTILOS PARA A LISTA --- */
+
+.highlight-card ul {
+  list-style-type: disc; /* Garante as bolinhas */
+  padding-left: 1.2rem;  /* Recuo para a bolinha ficar dentro do card */
+  margin: 0;
+}
+
+.highlight-card li {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem; /* Espaçamento entre os tópicos */
+  line-height: 1.5;
+}
+
+/* Deixa a bolinha (bullet) na cor laranja/primária do seu tema */
+.highlight-card li::marker {
+  color: var(--primary-color);
+}
+
+/* ---------------------------------- */
+
+.highlight-card .subtitle {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 968px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

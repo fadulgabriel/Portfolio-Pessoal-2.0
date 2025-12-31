@@ -1,0 +1,19 @@
+.footer {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
