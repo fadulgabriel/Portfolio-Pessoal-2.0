@@ -17,7 +17,7 @@
   height: 200%;
   background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
   animation: pulse 20s ease-in-out infinite;
-  z-index: -1; /* Correção: empurra o gradiente para trás */
+  z-index: -1; 
 }
 
 .hero::after {
@@ -29,7 +29,7 @@
   height: 200%;
   background: radial-gradient(circle, rgba(255, 140, 90, 0.05) 0%, transparent 70%);
   animation: pulse 25s ease-in-out infinite reverse;
-  z-index: -1; /* Correção: empurra o gradiente para trás */
+  z-index: -1; 
 }
 
 @keyframes pulse {
@@ -46,7 +46,7 @@
 
 .hero-content {
   position: relative;
-  z-index: 1; /* Garante que os textos fiquem na frente do fundo */
+  z-index: 1; 
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -134,11 +134,7 @@
 }
 
 @keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
+  0%, 20%, 50%, 80%, 100% {
     transform: translateX(-50%) translateY(0);
   }
   40% {
@@ -149,6 +145,7 @@
   }
 }
 
+/* --- AJUSTES PARA TABLET --- */
 @media (max-width: 968px) {
   .hero-wrapper {
     grid-template-columns: 1fr;
@@ -173,23 +170,49 @@
   }
 }
 
+/* --- AJUSTES FINAIS PARA CELULAR --- */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
+  /* 1. Mata as "lâmpadas gigantes" de fundo que estavam causando o vazamento laranja */
+  .hero::before,
+  .hero::after {
+    display: none !important;
   }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-title .highlight {
+    white-space: normal; /* Deixa o nome quebrar linha se a tela for muito fina */
+  }
+
   .hero-subtitle {
     font-size: 1.1rem;
+    margin-bottom: 2rem;
   }
+
   .hero-image {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
+    /* 2. Abaixa drásticamente o brilho do anel em volta da sua foto */
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.15) !important;
   }
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
   }
+
   .hero-buttons .btn {
     width: 100%;
     max-width: 300px;
+  }
+
+  /* 3. Tira a setinha de cima da sua foto e empurra ela graciosamente lá pra baixo */
+  .scroll-indicator {
+    position: relative;
+    bottom: 0;
+    margin-top: 3rem;
+    width: fit-content; /* A mágica que faz ela voltar pro meio */
   }
 }

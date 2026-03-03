@@ -2,10 +2,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%; /* Corrigido de 100vw para 100% para evitar vazamento lateral */
+    height: 100%; /* Corrigido de 100vh para lidar melhor com a barra do navegador no celular */
     z-index: -1;
-    background-color: var(--background-dark);
+    background-color: var(--bg-primary); /* Ajustado para usar sua variável global correta */
     overflow: hidden;
     pointer-events: none;
 }
@@ -62,4 +62,23 @@
     user-select: none;
     filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.3));
     will-change: transform, opacity;
+}
+
+/* =========================================
+   CONTENÇÃO MOBILE: SUAVIZA O LARANJA E REMOVE O EIXO
+   ========================================= */
+@media (max-width: 768px) {
+    .math-particle {
+        font-size: 1.5rem; 
+        filter: drop-shadow(0 0 2px rgba(255, 107, 53, 0.1)); 
+        opacity: 0.6; 
+    }
+
+    /* A ORDEM SUPREMA PARA ESCONDER A LINHA */
+    .math-grid::before,
+    .math-grid::after {
+        display: none !important;
+        content: none !important;
+        opacity: 0 !important;
+    }
 }

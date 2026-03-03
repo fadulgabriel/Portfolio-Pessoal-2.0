@@ -45,10 +45,9 @@ const Skills = () => {
             >
               <div className="category-header">
                 <span className="category-icon">{category.icon}</span>
-                {/* whiteSpace nowrap impede a quebra de linha */}
                 <h3
                   className="category-title"
-                  style={{ whiteSpace: 'nowrap', letterSpacing: '-0.5px', fontSize: '1.1rem' }}
+                  style={{ wordBreak: 'break-word', letterSpacing: '-0.5px', fontSize: '1.1rem' }}
                 >
                   {category.title}
                 </h3>
@@ -67,4 +66,3 @@ const Skills = () => {
 }
 
 export default Skills
-

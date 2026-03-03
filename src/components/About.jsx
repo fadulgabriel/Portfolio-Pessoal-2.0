@@ -27,12 +27,12 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              Minha relação com os números começou no colégio, me interessando por problemas de olimpíadas de matemática.
+              Minha relação com os números começou no colégio, me interessando por problemas de matemática.
               Hoje, levo essa mesma curiosidade e vontade de resolver desafios para o curso de Estatística na UnB.
               <p> </p>
 
-              <p>Acredito que trabalhar com dados vai muito além de apenas escrever códigos e rodar modelos. Meu objetivo é unir o rigor analítico à visão de negócios,
-                traduzindo informações em estratégias claras e impacto real para o mercado.</p>
+              <p>Acredito que trabalhar com dados vai muito além de apenas escrever códigos e rodar modelos. Meu objetivo é unir o rigor técnico necessário à visão de negócios,
+                transformando informações em estratégias e impacto real.</p>
             </p>
           </motion.div>
 

@@ -4,7 +4,7 @@
 
 .skills .container {
   max-width: 1200px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -17,7 +17,6 @@
 
 .skill-card-main {
   background-color: var(--bg-card);
-  /* Ajuste para cor de card escura */
   padding: 2.5rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 107, 53, 0.1);
@@ -25,6 +24,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .category-header {
@@ -38,34 +38,44 @@
 
 .category-icon {
   font-size: 2.5rem;
+  flex-shrink: 0;
 }
 
 .category-title {
   font-size: 1.6rem;
   color: var(--text-primary);
   font-weight: 700;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .skills-tag-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .skill-tag-label {
-  background: rgba(255, 107, 53, 0.1);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
   transition: all 0.3s ease;
+  cursor: default;
+  white-space: nowrap;
 }
 
 .skill-tag-label:hover {
-  background: rgba(255, 107, 53, 0.2);
-  border-color: var(--primary-color);
+  background: rgba(255, 107, 53, 0.15);
+  border-color: rgba(255, 107, 53, 0.6);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
 }
 
 @media (max-width: 1024px) {
@@ -74,56 +84,23 @@
   }
 }
 
+/* FORÇA BRUTA MOBILE: Empilha tudo em coluna, impossível estourar a tela */
 @media (max-width: 768px) {
   .skills-grid-three {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
   }
 
-  .skills .container {
-    padding: 0 1rem;
+  .skill-card-main {
+    width: 100%;
+    min-width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
   }
-}
-
-/* 1. O contêiner que segura as tags */
-.skills-tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  /* Faz as tags quebrarem para a linha de baixo se faltar espaço */
-  gap: 10px;
-  /* Espaço perfeito entre uma tag e outra */
-  margin-top: 24px;
-}
-
-/* 2. O visual da etiqueta (Tag) */
-.skill-tag-label {
-  background: rgba(255, 255, 255, 0.05);
-  /* Fundo quase transparente (Glassmorphism) */
-  color: #e2e8f0;
-  /* Texto num cinza bem clarinho/branco */
-  font-size: 0.85rem;
-  /* Tamanho delicado */
-  font-weight: 500;
-  padding: 6px 14px;
-  /* Espaço interno para não ficar espremido */
-  border-radius: 8px;
-  /* Bordas levemente arredondadas (moderno) */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  /* Borda bem sutil */
-  backdrop-filter: blur(4px);
-  /* Efeito de vidro */
-  transition: all 0.3s ease;
-  /* Deixa o hover suave */
-  cursor: default;
-}
-
-/* 3. O efeito quando passa o mouse exatamente em cima da tag */
-.skill-tag-label:hover {
-  background: rgba(255, 107, 53, 0.15);
-  /* Fundo com a sua cor de destaque suave */
-  border-color: rgba(255, 107, 53, 0.6);
-  /* Borda acende na sua cor de destaque */
-  color: #ffffff;
-  transform: translateY(-2px);
-  /* Tag dá um leve pulinho para cima */
-  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+  
+  .category-title {
+    font-size: 1.3rem;
+  }
 }

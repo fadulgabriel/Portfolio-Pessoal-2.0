@@ -36,7 +36,7 @@ export const projects = [
     id: 4,
     title: 'TESTE Chineses na UnB',
     description: 'Levantamento amostral na UnB para estimar a proporção de carros chineses. Coleta de dados realizada em campo, seguida de análises para testar associações entre as entre marcas, cores e motorização.',
-    type: 'Relatório Estatístico',
+    type: 'Relatório Descritivo',
     technologies: ['SAS', 'Análise Descritiva', 'Testes de Hipóteses', "Amostragem"],
     link: 'https://drive.google.com/file/d/1Ue5q4txmcJChGdLkJ4BtOaU2WNw7aGgQ/view?usp=sharing',
     githubUrl: '#',

@@ -1,8 +1,18 @@
 /* ============================================================
-   src/components/Projects.css - VERSÃO COM ALINHAMENTO PERFEITO
+   src/components/Projects.css - CARROSSEL MOBILE BLINDADO
    ============================================================ */
 
-/* --- 1. ESTILO DOS FILTROS (Original mantido) --- */
+/* --- 0. TRAVA DE LARGURA (O QUE ESTAVA QUEBRANDO TUDO) --- */
+.projects.section {
+  display: block; /* Anula o flex do global.css que esticava a página */
+  padding-top: 100px; /* Mantém o espaçamento já que tiramos o flex */
+}
+
+#projects .container {
+  min-width: 0; /* Regra de ouro: impede o carrossel de crescer infinitamente */
+}
+
+/* --- 1. ESTILO DOS FILTROS --- */
 .project-filters {
   display: flex;
   justify-content: center;
@@ -11,6 +21,7 @@
   gap: 12px;
   margin-bottom: 3rem;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .filter-btn {
@@ -40,12 +51,12 @@
   font-weight: 600;
 }
 
-/* --- 2. CARROSSEL E GRID (EXATAMENTE 3 CARDS) --- */
+/* --- 2. CARROSSEL E GRID --- */
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  display: flex;
-  align-items: center;
+  min-width: 0;
+  display: block;
 }
 
 .projects-slider {
@@ -64,16 +75,15 @@
 }
 
 .project-card {
-  /* MATEMÁTICA: Exatamente 3 cards lado a lado */
   flex: 0 0 calc((100% - 4rem) / 3); 
   scroll-snap-align: start;
-  
   background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
   border-radius: 16px;
   border: 1px solid rgba(255, 107, 53, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 /* --- 3. CONTEÚDO DO CARD --- */
@@ -102,21 +112,19 @@
   flex-grow: 1;
 }
 
-/* --- NOVO: ALINHAMENTO VERTICAL PERFEITO DO CABEÇALHO --- */
 .project-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Crucial: Alinha o centro da tag com o centro dos botões */
+  align-items: center; 
   gap: 12px;
   margin-bottom: 1rem;
-  min-height: 32px; /* Define uma altura mínima para o cabeçalho baseada na altura dos botões */
+  min-height: 32px; 
 }
 
 .project-type {
   font-size: 0.75rem;
   color: var(--primary-color);
   background: rgba(255, 107, 53, 0.1);
-  /* Padding ajustado para centralizar visualmente se a tag quebrar linha */
   padding: 6px 12px; 
   border-radius: 20px;
   font-weight: 600;
@@ -128,26 +136,23 @@
 .project-links {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espaço uniforme entre os ícones */
-  flex-shrink: 0; /* Proíbe a tag de "esmagar" os botões */
+  gap: 8px; 
+  flex-shrink: 0; 
 }
 
-/* --- NOVO: ESTILO UNIFORME PARA OS ÍCONES (BOTÕES) --- */
 .project-link {
   color: var(--text-secondary);
-  font-size: 1.2rem; /* Tamanho uniforme do ícone */
+  font-size: 1.2rem; 
   transition: var(--transition);
   display: flex;
   align-items: center;
-  justify-content: center; /* Centraliza o ícone dentro do 'botão' */
+  justify-content: center; 
   text-decoration: none;
-  /* Cria uma 'área de clique' quadrada e uniforme */
   width: 32px; 
   height: 32px;
-  border-radius: 8px; /* Cantos levemente arredondados */
+  border-radius: 8px; 
 }
 
-/* Estilo específico para o botão do GitHub (sem a escrita agora) */
 .project-link.github {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -160,7 +165,6 @@
   transform: translateY(-2px);
 }
 
-/* --- TEXTOS E TAGS DO CARD (Original mantido) --- */
 .project-title {
   font-size: 1.4rem;
   color: var(--text-primary);
@@ -207,6 +211,8 @@
   justify-content: center;
   cursor: pointer;
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -216,7 +222,7 @@
 .nav-btn:hover {
   background: var(--primary-color);
   color: #fff;
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
   box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
 }
 
@@ -228,29 +234,14 @@
   right: -25px;
 }
 
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 1024px) {
-  .project-card {
-    flex: 0 0 calc((100% - 2rem) / 2); /* 2 cards no Tablet */
-  }
-}
-
-@media (max-width: 768px) {
-  .project-card {
-    flex: 0 0 100%; /* 1 card inteiro no Celular */
-  }
-  .nav-btn {
-    display: none; 
-  }
-}
-
-/* --- BOLINHAS (PAGINATION DOTS) --- */
+/* --- 5. BOLINHAS (PAGINATION DOTS) --- */
 .carousel-dots {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .dot {
@@ -265,13 +256,43 @@
   outline: none;
 }
 
-.dot:hover {
-  background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.2);
-}
-
 .dot.active {
   background: #ffffff;
   transform: scale(1.3);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- 6. RESPONSIVIDADE BLINDADA --- */
+@media (max-width: 1024px) {
+  .project-card {
+    flex: 0 0 calc((100% - 2rem) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-filters { gap: 8px; }
+  .filter-btn { padding: 8px 16px; font-size: 0.85rem; }
+  
+  .projects-slider {
+    display: flex;
+    gap: 1rem;
+    padding: 10px 0 20px 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .project-card {
+    flex: 0 0 85%;
+    min-width: 85%;
+    max-width: 85%;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+  
+  .project-content { padding: 1.5rem; }
+  .project-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .project-links { margin-left: 0; width: 100%; justify-content: flex-start; }
+  .nav-btn { display: none; }
 }

@@ -21,13 +21,13 @@ const Background = () => {
 
     // O useMemo garante que as posições sejam calculadas apenas UMA VEZ quando o site abre
     const particles = useMemo(() => {
-        const symbols = ['∑', '∫', 'π', '∞', '∆', 'μ', 'σ'];
+        const symbols = ['∑', '∫', 'π', '∞', 'μ', 'σ', 'λ', 'θ', '∂', '∇'];
         return Array.from({ length: 30 }).map((_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100, // Começa dentro da tela (0 a 100%)
             scale: Math.random() * 0.6 + 0.4,
-            duration: Math.random() * 40 + 50, // Bem lento
+            duration: Math.random() * 40 + 20, // Bem lento
             symbol: symbols[Math.floor(Math.random() * symbols.length)]
         }));
     }, []); 
