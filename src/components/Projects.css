@@ -1,9 +1,11 @@
-/* --- 1. ESTILO DOS FILTROS (HOTBAR) --- */
-/* Adicionei isso aqui no topo */
+/* ============================================================
+   src/components/Projects.css - VERSÃO COM ALINHAMENTO PERFEITO
+   ============================================================ */
 
+/* --- 1. ESTILO DOS FILTROS (Original mantido) --- */
 .project-filters {
   display: flex;
-  justify-content: center; /* Centraliza na tela */
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
@@ -16,7 +18,7 @@
   color: var(--text-secondary);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px 24px;
-  border-radius: 100px; /* Formato Pílula */
+  border-radius: 100px;
   cursor: pointer;
   font-weight: 500;
   font-size: 0.95rem;
@@ -32,60 +34,67 @@
 
 .filter-btn.active {
   background: var(--primary-color);
-  color: #fff; /* Texto branco */
+  color: #fff;
   border-color: var(--primary-color);
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); /* Glow */
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
   font-weight: 600;
 }
 
-/* --- 2. GRID E CARDS (O que você já tinha) --- */
+/* --- 2. CARROSSEL E GRID (EXATAMENTE 3 CARDS) --- */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+.projects-slider {
+  display: flex;
   gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 15px 0 25px 0;
+  scrollbar-width: none;
+  width: 100%;
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
 }
 
 .project-card {
+  /* MATEMÁTICA: Exatamente 3 cards lado a lado */
+  flex: 0 0 calc((100% - 4rem) / 3); 
+  scroll-snap-align: start;
+  
   background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
-  padding: 0; 
-  border-radius: 16px; 
-  box-shadow: var(--shadow-sm);
+  border-radius: 16px;
   border: 1px solid rgba(255, 107, 53, 0.1);
-  transition: all 0.4s ease;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden; 
-  height: 100%; 
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 107, 53, 0.15);
-  border-color: rgba(255, 107, 53, 0.4);
-}
-
-/* Área da Imagem */
+/* --- 3. CONTEÚDO DO CARD --- */
 .project-image-container {
   width: 100%;
-  height: 220px; 
+  height: 220px;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
 }
 
 .project-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-fit: cover;
+  transition: var(--transition);
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-/* Área do Texto */
 .project-content {
   padding: 1.8rem;
   display: flex;
@@ -93,42 +102,65 @@
   flex-grow: 1;
 }
 
+/* --- NOVO: ALINHAMENTO VERTICAL PERFEITO DO CABEÇALHO --- */
 .project-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Crucial: Alinha o centro da tag com o centro dos botões */
+  gap: 12px;
   margin-bottom: 1rem;
+  min-height: 32px; /* Define uma altura mínima para o cabeçalho baseada na altura dos botões */
 }
 
 .project-type {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--primary-color);
   background: rgba(255, 107, 53, 0.1);
-  padding: 0.3rem 0.8rem;
+  /* Padding ajustado para centralizar visualmente se a tag quebrar linha */
+  padding: 6px 12px; 
   border-radius: 20px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .project-links {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px; /* Espaço uniforme entre os ícones */
+  flex-shrink: 0; /* Proíbe a tag de "esmagar" os botões */
 }
 
+/* --- NOVO: ESTILO UNIFORME PARA OS ÍCONES (BOTÕES) --- */
 .project-link {
   color: var(--text-secondary);
-  font-size: 1.2rem;
+  font-size: 1.2rem; /* Tamanho uniforme do ícone */
   transition: var(--transition);
   display: flex;
   align-items: center;
+  justify-content: center; /* Centraliza o ícone dentro do 'botão' */
+  text-decoration: none;
+  /* Cria uma 'área de clique' quadrada e uniforme */
+  width: 32px; 
+  height: 32px;
+  border-radius: 8px; /* Cantos levemente arredondados */
+}
+
+/* Estilo específico para o botão do GitHub (sem a escrita agora) */
+.project-link.github {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-link:hover {
   color: var(--primary-color);
-  transform: scale(1.1);
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+  transform: translateY(-2px);
 }
 
+/* --- TEXTOS E TAGS DO CARD (Original mantido) --- */
 .project-title {
   font-size: 1.4rem;
   color: var(--text-primary);
@@ -142,46 +174,104 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .tech-tag {
-  font-size: 0.8rem;
-  color: var(--text-primary);
+  font-size: 0.85rem;
+  color: #e2e8f0;
   background: rgba(255, 255, 255, 0.05);
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
 }
 
-/* --- 3. RESPONSIVIDADE (Mobile) --- */
+/* --- 4. BOTÕES DE SETA --- */
+.nav-btn {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+}
+
+.nav-btn.prev {
+  left: -25px;
+}
+
+.nav-btn.next {
+  right: -25px;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+  .project-card {
+    flex: 0 0 calc((100% - 2rem) / 2); /* 2 cards no Tablet */
+  }
+}
 
 @media (max-width: 768px) {
-  /* Ajuste do Grid */
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .project-card {
+    flex: 0 0 100%; /* 1 card inteiro no Celular */
   }
-  .project-image-container {
-    height: 200px;
-  }
-
-  /* Ajuste dos Filtros no Celular */
-  .project-filters {
-    gap: 8px;
-  }
-  .filter-btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    flex-grow: 1; /* Botões ocupam largura igual */
-    text-align: center;
+  .nav-btn {
+    display: none; 
   }
 }
 
+/* --- BOLINHAS (PAGINATION DOTS) --- */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background: #ffffff;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

@@ -67,8 +67,8 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <img 
-                src="/foto-perfil2.png" // altera a foto de capa
+              <img
+                src="/foto-perfil2.png"
                 alt="Gabriel Fadul"
                 className="hero-image"
               />
@@ -91,4 +91,3 @@ const Hero = () => {
 }
 
 export default Hero
-

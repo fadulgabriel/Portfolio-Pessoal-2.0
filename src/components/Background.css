@@ -1,0 +1,65 @@
+.math-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: var(--background-dark);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Subtle mathematical grid */
+.math-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+}
+
+/* Add an axis aesthetic */
+.math-grid::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 107, 53, 0.1);
+}
+
+.math-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(255, 107, 53, 0.1);
+}
+
+.particles-layer {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+}
+
+.math-particle {
+    position: absolute;
+    color: var(--accent-color);
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 2rem;
+    user-select: none;
+    filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.3));
+    will-change: transform, opacity;
+}

@@ -2,101 +2,128 @@
   background-color: var(--bg-secondary);
 }
 
-/* NOVO: Isso força a "caixa" invisível da seção Skills a ser mais larga */
 .skills .container {
-  max-width: 1200px; /* Aumente este valor se quiser ainda mais largo */
-  width: 95%;        /* Garante que use quase toda a tela em monitores menores */
+  max-width: 1200px;
+  width: 95%;
   margin: 0 auto;
 }
 
-.skills-grid {
+.skills-grid-three {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Mantém 2 colunas */
-  gap: 1.5rem; /* Diminuí o gap para dar mais largura aos cards */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   width: 100%;
 }
 
-.skill-category {
-  background-color: var(--bg-primary);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+.skill-card-main {
+  background-color: var(--bg-card);
+  /* Ajuste para cor de card escura */
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .category-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--border-color);
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .category-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .category-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.skills-list {
+.skills-tag-container {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
-.skill-item {
-  width: 100%;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
-  font-weight: 500;
+.skill-tag-label {
+  background: rgba(255, 107, 53, 0.1);
   color: var(--text-primary);
-}
-
-.skill-level {
-  font-weight: 600;
-  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  transition: all 0.3s ease;
 }
 
-.skill-bar {
-  width: 100%;
-  height: 8px;
-  background-color: var(--bg-tertiary);
-  border-radius: 4px;
-  overflow: hidden;
+.skill-tag-label:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: var(--primary-color);
 }
 
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
-  border-radius: 4px;
-  transition: width 1s ease;
+@media (max-width: 1024px) {
+  .skills-grid-three {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 768px) {
-  .skills-grid {
+  .skills-grid-three {
     grid-template-columns: 1fr;
   }
-  
-  /* Ajuste de segurança para celular */
+
   .skills .container {
     padding: 0 1rem;
   }
+}
+
+/* 1. O contêiner que segura as tags */
+.skills-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* Faz as tags quebrarem para a linha de baixo se faltar espaço */
+  gap: 10px;
+  /* Espaço perfeito entre uma tag e outra */
+  margin-top: 24px;
+}
+
+/* 2. O visual da etiqueta (Tag) */
+.skill-tag-label {
+  background: rgba(255, 255, 255, 0.05);
+  /* Fundo quase transparente (Glassmorphism) */
+  color: #e2e8f0;
+  /* Texto num cinza bem clarinho/branco */
+  font-size: 0.85rem;
+  /* Tamanho delicado */
+  font-weight: 500;
+  padding: 6px 14px;
+  /* Espaço interno para não ficar espremido */
+  border-radius: 8px;
+  /* Bordas levemente arredondadas (moderno) */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Borda bem sutil */
+  backdrop-filter: blur(4px);
+  /* Efeito de vidro */
+  transition: all 0.3s ease;
+  /* Deixa o hover suave */
+  cursor: default;
+}
+
+/* 3. O efeito quando passa o mouse exatamente em cima da tag */
+.skill-tag-label:hover {
+  background: rgba(255, 107, 53, 0.15);
+  /* Fundo com a sua cor de destaque suave */
+  border-color: rgba(255, 107, 53, 0.6);
+  /* Borda acende na sua cor de destaque */
+  color: #ffffff;
+  transform: translateY(-2px);
+  /* Tag dá um leve pulinho para cima */
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
 }
