@@ -71,6 +71,28 @@
   width: 100%;
 }
 
+/* --- NOVO: ESTILO ESPECÍFICO DO BOTÃO CV --- */
+.cv-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--text-secondary);
+  padding: 6px 18px;
+  border-radius: 20px;
+  opacity: 0.9;
+}
+
+.cv-link:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(255, 107, 53, 0.1);
+}
+
+.cv-link::after {
+  display: none !important; /* Remove aquela barrinha laranja embaixo que os outros links têm */
+}
+
+/* --- MENU MOBILE --- */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -133,5 +155,11 @@
     text-align: center;
     padding: 1rem;
   }
-}
 
+  /* --- MÁGICA PARA O BOTÃO CV NO CELULAR --- */
+  .nav-link.cv-link {
+    width: max-content; /* Em vez de 100%, pega só o tamanho da palavra */
+    margin: 10px auto 20px auto; /* Centraliza perfeitamente */
+    padding: 10px 24px;
+  }
+}

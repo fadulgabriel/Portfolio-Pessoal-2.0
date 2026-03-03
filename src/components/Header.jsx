@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaFileDownload } from 'react-icons/fa' // Mantive o ícone de download
+import { FaFileDownload } from 'react-icons/fa' 
 import './Header.css'
 
 const Header = () => {
@@ -59,26 +59,13 @@ const Header = () => {
               </a>
             ))}
 
-            {/* ATUALIZADO: Link para o Google Drive */}
+            {/* Link para o Google Drive limpo e usando apenas as classes do CSS */}
             <a
               href="https://drive.google.com/file/d/1GT2ilPspTp3k6yTrA1GaZPHgtGsMUPMP/view?usp=drive_link"
-              target="_blank"             // Abre em nova aba
-              rel="noopener noreferrer"   // Segurança para links externos
+              target="_blank"             
+              rel="noopener noreferrer"   
               className="nav-link cv-link"
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                border: '1px solid currentColor',
-                padding: '6px 16px',
-                borderRadius: '20px',
-                fontSize: '0.9rem',
-                opacity: 0.8,
-                marginTop: isMobileMenuOpen ? '10px' : '0',
-                cursor: 'pointer',
-                textDecoration: 'none'
-              }}
             >
               <FaFileDownload size={14} />
               <span>CV</span>
